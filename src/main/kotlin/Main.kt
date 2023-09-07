@@ -1,8 +1,7 @@
+import ca.tetervak.dicegame.GameModel
 import ca.tetervak.dicegame.data.service.RollerService
 import ca.tetervak.dicegame.data.service.RollerServiceImpl
-import ca.tetervak.dicegame.domain.GameUser
-import ca.tetervak.dicegame.domain.RollData
-import ca.tetervak.dicegame.domain.UserLevel
+import ca.tetervak.dicegame.domain.*
 
 fun main(args: Array<String>) {
     println("Hello Dice Game!")
@@ -23,5 +22,20 @@ fun main(args: Array<String>) {
     println("*** Testing GameUser:")
     val gameUser = GameUser("Alex", UserLevel.INTERMEDIATE)
     println("gameUser = $gameUser")
+
+    println("*** testing GetRollDataUseCase")
+    val getRollData = GetRollDataUseCase(rollerService)
+    for(rollCount in 1..3){
+        val roll = getRollData(3)
+        println("roll $rollCount = $roll")
+    }
+
+    println("*** testing GameModel:")
+    val gameModel = GameModel(gameUser, getRollData, FormatTimeStampUseCase())
+    println("before roll: gameModel = $gameModel")
+    gameModel.rollDice(4)
+    println("after roll: gameModel = $gameModel\"")
+    gameModel.reset()
+    println("after reset: gameModel = $gameModel\"")
 
 }
