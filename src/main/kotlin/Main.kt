@@ -1,6 +1,8 @@
 import ca.tetervak.dicegame.data.service.RollerService
 import ca.tetervak.dicegame.data.service.RollerServiceImpl
+import ca.tetervak.dicegame.domain.GameUser
 import ca.tetervak.dicegame.domain.RollData
+import ca.tetervak.dicegame.domain.UserLevel
 
 fun main(args: Array<String>) {
     println("Hello Dice Game!")
@@ -17,5 +19,9 @@ fun main(args: Array<String>) {
             println("roll $rollCount of $numberOfDice dice = $roll")
         }
     }
+
+    println("*** Testing GameUser:")
+    val gameUser = GameUser("Alex", UserLevel.INTERMEDIATE)
+    println("gameUser = $gameUser")
 
 }
