@@ -8,12 +8,16 @@ class RollerServiceImpl(
 ): RollerService {
 
     override fun getRollData(numberOfDice: Int): RollData {
-        val list: List<Int> =
-            buildList(capacity = numberOfDice) {
-                repeat(numberOfDice){
-                    add(random.nextInt(from = 1, until = 7))
+        if(numberOfDice > 0){
+            val list: List<Int> =
+                buildList(capacity = numberOfDice) {
+                    repeat(numberOfDice){
+                        add(random.nextInt(from = 1, until = 7))
+                    }
                 }
-            }
-        return RollData(list)
+            return RollData(list)
+        } else {
+            throw IllegalArgumentException("Illegal nnumberOfDice = $numberOfDice")
+        }
     }
 }
