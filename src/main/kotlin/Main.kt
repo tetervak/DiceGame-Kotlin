@@ -31,11 +31,12 @@ fun main(args: Array<String>) {
     }
 
     println("*** testing GameModel:")
-    val gameModel = GameModel(gameUser, getRollData, FormatTimeStampUseCase())
-    println("before roll: gameModel = $gameModel")
+    val gameModel = GameModel(gameUser, getRollData)
+    println("gameUser = ${gameModel.gameUser}")
+    println("before roll: gameState = ${gameModel.gameState}")
     gameModel.rollDice(4)
-    println("after roll: gameModel = $gameModel\"")
+    println("after roll: gameState = ${gameModel.gameState}")
     gameModel.reset()
-    println("after reset: gameModel = $gameModel\"")
+    println("after reset: gameState = ${gameModel.gameState}")
 
 }
