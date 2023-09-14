@@ -2,6 +2,7 @@ import ca.tetervak.dicegame.GameModel
 import ca.tetervak.dicegame.data.service.RollerService
 import ca.tetervak.dicegame.data.service.RollerServiceImpl
 import ca.tetervak.dicegame.domain.*
+import kotlin.random.Random
 
 fun main(args: Array<String>) {
     println("Hello Dice Game!")
@@ -11,7 +12,7 @@ fun main(args: Array<String>) {
     println("rollData = $rollData")
 
     println("*** Testing RollerService:")
-    val rollerService: RollerService = RollerServiceImpl()
+    val rollerService: RollerService = RollerServiceImpl(Random(1))
     for(numberOfDice in 1..5){
         for(rollCount in 1..3){
             val roll = rollerService.getRollData(numberOfDice)
@@ -31,11 +32,12 @@ fun main(args: Array<String>) {
     }
 
     println("*** testing GameModel:")
-    val gameModel = GameModel(gameUser, getRollData, FormatTimeStampUseCase())
-    println("before roll: gameModel = $gameModel")
+    val gameModel = GameModel(gameUser, getRollData)
+    println("gameUser = ${gameModel.gameUser}")
+    println("before roll: gameState = ${gameModel.gameState}")
     gameModel.rollDice(4)
-    println("after roll: gameModel = $gameModel\"")
+    println("after roll: gameState = ${gameModel.gameState}")
     gameModel.reset()
-    println("after reset: gameModel = $gameModel\"")
+    println("after reset: gameState = ${gameModel.gameState}")
 
 }
