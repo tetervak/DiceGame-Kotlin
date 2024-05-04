@@ -17,7 +17,7 @@ class RollerServiceImpl(
                 }
             return RollData(list)
         } else {
-            throw IllegalArgumentException("Illegal nnumberOfDice = $numberOfDice")
+            throw IllegalArgumentException("Illegal numberOfDice = $numberOfDice")
         }
     }
 }

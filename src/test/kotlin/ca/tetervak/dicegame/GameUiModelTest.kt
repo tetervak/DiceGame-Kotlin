@@ -9,7 +9,7 @@ import org.junit.jupiter.api.*
 
 import kotlin.random.Random
 
-class GameModelTest {
+class GameUiModelTest {
 
     companion object {
         @JvmStatic
@@ -28,11 +28,11 @@ class GameModelTest {
     private val gameUser = GameUser("Alex", UserLevel.INTERMEDIATE)
     private val rollerService: RollerService = RollerServiceImpl(Random(1))
     private val getRollData = GetRollDataUseCase(rollerService)
-    private val gameModel = GameModel(gameUser, getRollData)
+    private val gameUiModel = GameUiModel(gameUser, getRollData)
 
     init{
-        println("gameUser = ${gameModel.gameUser}")
-        println("gameState = ${gameModel.gameState}")
+        println("gameUser = ${gameUiModel.gameUser}")
+        println("gameState = ${gameUiModel.uiState}")
     }
 
     @BeforeEach
@@ -49,20 +49,20 @@ class GameModelTest {
     @Test
     fun rollDice() {
         println("test rollDice()")
-        println("before roll: gameState = ${gameModel.gameState}")
-        assert(gameModel.gameState is GameState.NotRolled)
-        gameModel.rollDice(4)
-        assert(gameModel.gameState is GameState.Rolled)
-        println("after roll: gameState = ${gameModel.gameState}")
+        println("before roll: gameState = ${gameUiModel.uiState}")
+        assert(gameUiModel.uiState is GameUiState.NotRolled)
+        gameUiModel.rollDice(4)
+        assert(gameUiModel.uiState is GameUiState.Rolled)
+        println("after roll: gameState = ${gameUiModel.uiState}")
     }
 
     @Test
     fun reset() {
         println("test reset()")
-        gameModel.rollDice(4)
-        println("after roll: gameState = ${gameModel.gameState}")
-        gameModel.reset()
-        assert(gameModel.gameState is GameState.NotRolled)
-        println("after reset: gameState = ${gameModel.gameState}")
+        gameUiModel.rollDice(4)
+        println("after roll: gameState = ${gameUiModel.uiState}")
+        gameUiModel.reset()
+        assert(gameUiModel.uiState is GameUiState.NotRolled)
+        println("after reset: gameState = ${gameUiModel.uiState}")
     }
 }

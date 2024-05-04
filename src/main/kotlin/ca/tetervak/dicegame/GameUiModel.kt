@@ -4,18 +4,18 @@ import ca.tetervak.dicegame.domain.GameUser
 import ca.tetervak.dicegame.domain.GetRollDataUseCase
 import java.util.*
 
-class GameModel(
+class GameUiModel(
     val gameUser: GameUser,
     private val getRollData: GetRollDataUseCase
 ) {
 
-    var gameState: GameState = GameState.NotRolled
+    var uiState: GameUiState = GameUiState.NotRolled
 
     fun rollDice(numberOfDice: Int) {
-        gameState = GameState.Rolled(getRollData(numberOfDice), Date())
+        uiState = GameUiState.Rolled(getRollData(numberOfDice), Date())
     }
 
     fun reset() {
-        gameState = GameState.NotRolled
+        uiState = GameUiState.NotRolled
     }
 }
