@@ -7,6 +7,7 @@ import kotlin.random.Random
 
 class RollerServiceImplTest {
 
+    // specifying the seed makes the "random" sequence always the same
     private val random: Random = Random(seed = 10)
     private val rollerService: RollerService = RollerServiceImpl(random)
 
