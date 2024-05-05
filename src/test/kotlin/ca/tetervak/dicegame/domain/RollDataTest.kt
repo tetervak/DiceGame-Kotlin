@@ -1,24 +1,12 @@
 package ca.tetervak.dicegame.domain
 
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
 
 class RollDataTest {
-
-    companion object {
-        @JvmStatic
-        @BeforeAll
-        fun startAll() {
-            println("--- Starting RollData Tests ---")
-        }
-
-        @JvmStatic
-        @AfterAll
-        fun endAll() {
-            println("--- End of RollData Tests ---")
-        }
-    }
 
     @BeforeEach
     fun setUp() {
@@ -29,7 +17,6 @@ class RollDataTest {
     fun tearDown() {
         println("--- ------- ---- ---")
     }
-
 
     @Test
     fun getTotal() {
