@@ -31,8 +31,8 @@ class RollerServiceImplTest {
                 assertEquals(numberOfDice, rollData.numberOfDice)
                 val values = rollData.values
                 for(value in values){
-                    assert(value > 0)
-                    assert(value <= 6)
+                    assertTrue(value > 0)
+                    assertTrue(value <= 6)
                 }
             }
         }

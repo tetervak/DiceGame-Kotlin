@@ -6,24 +6,11 @@ import ca.tetervak.dicegame.domain.GameUser
 import ca.tetervak.dicegame.domain.GetRollDataUseCase
 import ca.tetervak.dicegame.domain.UserLevel
 import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.*
 
 import kotlin.random.Random
 
 class GameUiModelTest {
-
-    companion object {
-        @JvmStatic
-        @BeforeAll
-        fun startAll() {
-            println("--- Starting GameModel Tests ---")
-        }
-
-        @JvmStatic
-        @AfterAll
-        fun endAll() {
-            println("--- End of GameModel Tests ---")
-        }
-    }
 
     private val gameUser = GameUser("Alex", UserLevel.INTERMEDIATE)
     private val rollerService: RollerService = RollerServiceImpl(Random(1))
@@ -50,9 +37,9 @@ class GameUiModelTest {
     fun rollDice() {
         println("test rollDice()")
         println("before roll: gameState = ${gameUiModel.uiState}")
-        assert(gameUiModel.uiState is GameUiState.NotRolled)
+        assertTrue(gameUiModel.uiState is GameUiState.NotRolled)
         gameUiModel.rollDice(4)
-        assert(gameUiModel.uiState is GameUiState.Rolled)
+        assertTrue(gameUiModel.uiState is GameUiState.Rolled)
         println("after roll: gameState = ${gameUiModel.uiState}")
     }
 
@@ -62,7 +49,7 @@ class GameUiModelTest {
         gameUiModel.rollDice(4)
         println("after roll: gameState = ${gameUiModel.uiState}")
         gameUiModel.reset()
-        assert(gameUiModel.uiState is GameUiState.NotRolled)
+        assertTrue(gameUiModel.uiState is GameUiState.NotRolled)
         println("after reset: gameState = ${gameUiModel.uiState}")
     }
 }
